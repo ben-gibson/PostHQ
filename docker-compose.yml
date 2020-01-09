@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  app:
+    image: post-hq/app-dev
+    build:
+      context: ./docker/dev
+      args:
+        UID: ${DEV_UID-501}
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/var/www

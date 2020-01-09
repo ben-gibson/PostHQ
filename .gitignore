@@ -1,0 +1,6 @@
+# TODO: Add these to my global .gitignore file.
+.DS_Store
+.idea
+
+node_modules
+.env
