@@ -10,11 +10,5 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use('/api', routes);
 
-const listen = () => {
-  app.listen(port, () => {
-    console.log(`Example app listening on port ${port}!`);
-  });
-};
-
 mongoose.connect('mongodb://posthqdev:posthqdev@db/posthq', { keepAlive: 1, useNewUrlParser: true });
-mongoose.connection.once('open', listen);
+mongoose.connection.once('open', () => app.listen(port));
