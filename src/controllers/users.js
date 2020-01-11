@@ -17,7 +17,11 @@ exports.create = asyncHandler(async (request, response) => {
 });
 
 exports.deleteUser = asyncHandler(async (request, response) => {
-  await User.deleteOne({ _id: request.params.id });
+  const user = await User.findById(request.params.id);
+
+  if (user) {
+    await user.remove();
+  }
 
   return response
     .status(202)
