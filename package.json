@@ -11,8 +11,8 @@
     "doc": "docs"
   },
   "scripts": {
-    "start:prod": "node src/app.js",
-    "start": "nodemon --inspect=0.0.0.0 src/app.js",
+    "start:prod": "node app.js",
+    "start": "nodemon --inspect=0.0.0.0 app.js",
     "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -27,12 +27,19 @@
     "community"
   ],
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "^5.8.7",
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.19.1",
     "nodemon": "^1.14.12"
+  },
+  "_moduleAliases": {
+    "@controllers": "./src/controllers"
   }
 }

@@ -1,10 +1,41 @@
-exports.list = (request, response) => {
-  response.json([
-    {
-      id: '24b6188f-26e7-4e0c-aa09-732709281454',
-      name: 'Chief Hopper',
-      email: 'cheif.hopper@theupsidedown.com',
-      registered_at: '2020-01-09T16:12:53Z',
-    },
-  ]);
+const User = require('../models/user');
+
+exports.list = async (request, response) => {
+  try {
+    const users = await User.find();
+
+    return response.json(users);
+  } catch (error) {
+    return response
+      .status(500)
+      .send(error);
+  }
+};
+
+exports.create = async (request, response) => {
+  try {
+    console.log(request.body);
+    const user = new User(request.body);
+    const result = await user.save();
+
+    return response
+      .status(201)
+      .send(result);
+  } catch (error) {
+    return response
+      .status(500)
+      .send(error);
+  }
+};
+
+exports.deleteUser = async (request, response) => {
+  try {
+    await User.deleteOne({ _id: request.params.id });
+  } catch (error) {
+    return response.send(error);
+  }
+
+  return response
+    .status(202)
+    .send();
 };
