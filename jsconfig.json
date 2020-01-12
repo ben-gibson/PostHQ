@@ -4,6 +4,9 @@
     "paths": {
       "@controllers/*": ["./src/controllers/*"],
       "@security/*": ["./src/security/*"],
+      "@models/*": ["./src/models/*"],
+      "@errors/*": ["./src/errors/*"],
+      "@middlewares": ["./src/middlewares/*"]
     }
   }
 }

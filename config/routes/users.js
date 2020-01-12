@@ -8,6 +8,7 @@ routes.route('/')
   .post(users.create);
 
 routes.route('/:id')
+  .get(users.getUser)
   .delete(users.deleteUser);
 
 module.exports = routes;

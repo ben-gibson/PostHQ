@@ -42,6 +42,9 @@
     "nodemon": "^1.14.12"
   },
   "_moduleAliases": {
-    "@controllers": "./src/controllers"
+    "@controllers": "./src/controllers",
+    "@models": "./src/models",
+    "@errors": "./src/errors",
+    "@middlewares": "./src/middlewares"
   }
 }

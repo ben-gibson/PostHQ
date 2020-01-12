@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
-const User = require('../models/user');
+const User = require('@models/user');
+const HttpError = require('@errors/HttpError');
 
 exports.list = asyncHandler(async (request, response) => {
   const users = await User.find();
@@ -16,6 +17,16 @@ exports.create = asyncHandler(async (request, response) => {
     .send(result);
 });
 
+exports.getUser = asyncHandler(async (request, response) => {
+  const user = await User.findById(request.params.id);
+
+  if (!user) {
+    throw HttpError.NotFound(`User '${request.params.id}' could not be found`);
+  }
+
+  return response.send(user);
+});
+
 exports.deleteUser = asyncHandler(async (request, response) => {
   const user = await User.findById(request.params.id);
 
@@ -24,6 +35,6 @@ exports.deleteUser = asyncHandler(async (request, response) => {
   }
 
   return response
-    .status(202)
+    .status(204)
     .send();
 });
