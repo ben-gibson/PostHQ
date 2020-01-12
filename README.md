@@ -30,7 +30,9 @@ on localhost here [http://localhost:3000]().
 
 #### Running tests
 
-TOOD
+```bash
+$ npm test
+```
 
 ## Usage
 

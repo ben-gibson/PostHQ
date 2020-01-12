@@ -3,7 +3,7 @@
  */
 const HttpError = require('@errors/HttpError');
 
-exports.handler = (error, request, response, next) => {
+module.exports = (error, request, response, next) => {
   // We could skip to the default handler if the client doesn't want json!
 
   if (!(error instanceof HttpError)) {
