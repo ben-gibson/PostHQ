@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uuidv4 = require('uuid/v4');
 const bcrypt = require('bcryptjs');
+const mongooseHidden = require('mongoose-hidden')({ defaultHidden: { password: true } });
 
 const { Schema } = mongoose;
 
@@ -17,6 +18,8 @@ const userSchema = new Schema({
   },
   registeredAt: { type: Date, default: Date.now, required: true },
 });
+
+userSchema.plugin(mongooseHidden);
 
 userSchema.pre('save', async function save(next) {
   // If the password hasn't changed then do not try and re-hash it!
