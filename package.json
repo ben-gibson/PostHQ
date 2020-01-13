@@ -14,7 +14,7 @@
     "start:prod": "node app.js",
     "start": "nodemon --inspect=0.0.0.0 app.js",
     "lint": "eslint",
-    "test": "mocha tests/**/*Test.js"
+    "test": "NODE_ENV=test mocha --exit tests/**/*Test.js"
   },
   "repository": {
     "type": "git",
@@ -44,9 +44,12 @@
     "eslint-plugin-import": "^2.19.1",
     "mocha": "^7.0.0",
     "nodemon": "^1.14.12",
-    "sinon": "^8.0.4"
+    "sinon": "^8.0.4",
+    "supertest": "^4.0.2"
   },
   "_moduleAliases": {
+    "@root": "./",
+    "@config": "./config",
     "@controllers": "./src/controllers",
     "@models": "./src/models",
     "@errors": "./src/errors",

@@ -3,17 +3,23 @@
  */
 const HttpError = require('@errors/HttpError');
 
-module.exports = (error, request, response, next) => {
+module.exports = (config) => (error, request, response, next) => {
   // We could skip to the default handler if the client doesn't want json!
 
   if (!(error instanceof HttpError)) {
+    const data = {
+      status: 500,
+      description: 'Internal Server Error',
+      message: (config.isProdEnv()) ? 'Sorry, something went wrong' : error.message,
+    };
+
+    if (!config.isProdEnv()) {
+      data.stackTrace = error.stack;
+    }
+
     return response
       .status(500)
-      .json({
-        status: 500,
-        description: 'Internal Server Error',
-        message: 'Sorry, something went wrong', // TODO: Expose the message and stacktrace on DEV enviroment.
-      });
+      .json(data);
   }
 
   return response

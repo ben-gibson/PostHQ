@@ -6,5 +6,9 @@ db.createUser({
       role: 'readWrite',
       db: 'posthq',
     },
+    {
+      role: 'readWrite',
+      db: 'posthqtest',
+    },
   ],
 });

@@ -17,7 +17,7 @@ const userSchema = new Schema({
     type: String, required: true, select: false, minlength: 8,
   },
   registeredAt: { type: Date, default: Date.now, required: true },
-});
+}, { bufferCommands: false });
 
 userSchema.plugin(mongooseHidden);
 

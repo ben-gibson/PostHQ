@@ -1,3 +1,4 @@
+// TODO: Look into bootstraping tests so that this doesn't have to be setup each time.
 require('module-alias/register');
 
 const userController = require('@controllers/userController');

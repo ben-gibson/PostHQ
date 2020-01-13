@@ -31,7 +31,7 @@ on localhost here [http://localhost:3000]().
 #### Running tests
 
 ```bash
-$ npm test
+$ docker-compose exec app npm test
 ```
 
 ## Usage

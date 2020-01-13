@@ -4,7 +4,13 @@ const HttpError = require('@errors/HttpError');
 const sinon = require('sinon');
 
 describe('Error Handler', () => {
-  it('should handle HTTP errors', () => {
+  let errorHandler;
+
+  beforeEach(() => {
+    errorHandler = middleware({ isProdEnv: () => true });
+  });
+
+  it('should handle HTTP errors for prod environment', () => {
     const error = HttpError.NotFound('Foo bar');
 
     const stubResponse = {
@@ -12,7 +18,7 @@ describe('Error Handler', () => {
       status: sinon.spy(() => stubResponse),
     };
 
-    const result = middleware(error, {}, stubResponse, sinon.spy());
+    const result = errorHandler(error, {}, stubResponse, sinon.spy());
 
     expect(stubResponse.status.calledWith(404)).to.equal(true);
 
@@ -20,7 +26,7 @@ describe('Error Handler', () => {
     expect(result).to.equal(stubResponse);
   });
 
-  it('should handle non HTTP errors', () => {
+  it('should handle non HTTP errors for prod environment', () => {
     const error = new Error('Some error with sensitive details');
 
     const stubResponse = {
@@ -28,7 +34,7 @@ describe('Error Handler', () => {
       status: sinon.spy(() => stubResponse),
     };
 
-    const result = middleware(error, {}, stubResponse, sinon.spy());
+    const result = errorHandler(error, {}, stubResponse, sinon.spy());
 
     expect(stubResponse.status.calledWith(500)).to.equal(true);
 
