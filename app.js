@@ -8,13 +8,13 @@ const routes = require('./config/routes');
 
 const app = express();
 
-databaseConnect();
+databaseConnect(config);
 
 app.use(bodyParser.json());
 app.use('/api', routes);
 app.use(errorHandler(config));
 
-// Hand over responsibility to supertest to bind to a port when we're running integration tests!
+// Handover responsibility to supertest to bind to a port when we're running integration tests!
 if (!config.isTestEnv()) {
   app.listen(config.port);
 }

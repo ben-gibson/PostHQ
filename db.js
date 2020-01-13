@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
 
-module.exports = async () => {
-  // Stops requests hanging indefinitely when the db is down.
-  mongoose.set('bufferCommands', false);
-
+module.exports = async (config) => {
   try {
-    await mongoose.connect('mongodb://posthqdev:posthqdev@db/posthq', { keepAlive: 1, useNewUrlParser: true });
+    await mongoose.connect(config.database.dsn, { keepAlive: 1, useNewUrlParser: true });
   } catch (error) {
     console.error(error);
   }
