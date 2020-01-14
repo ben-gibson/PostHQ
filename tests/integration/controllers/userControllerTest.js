@@ -136,6 +136,14 @@ describe('User Controller Test', () => {
       const { body } = response;
 
       expect(body).to.be.empty;
+
+      // Assert that the user has actually been deleted.
+      await agent
+        .get(`/api/users/${id}`)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(404)
+        .send();
     });
 
     it('should silently succeed when user does not exist', async () => {
