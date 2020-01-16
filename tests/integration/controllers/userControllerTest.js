@@ -4,7 +4,7 @@ require('module-alias/register');
 const request = require('supertest');
 const mongoose = require('mongoose');
 const app = require('@root/app.js');
-const User = require('@models/user');
+const User = require('@root/src/models/User');
 const { expect } = require('chai');
 
 const agent = request.agent(app);

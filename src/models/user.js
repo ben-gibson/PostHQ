@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const uuidv4 = require('uuid/v4');
-const bcrypt = require('bcryptjs');
+const crypto = require('@security/crypto');
 const mongooseHidden = require('mongoose-hidden')({ defaultHidden: { password: true } });
 
 const { Schema } = mongoose;
@@ -27,7 +27,7 @@ userSchema.pre('save', async function save(next) {
     return next();
   }
 
-  this.password = await bcrypt.hash(this.password, 12);
+  this.password = await crypto.hash(this.password);
 
   return next();
 });
