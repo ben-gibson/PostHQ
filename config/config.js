@@ -20,7 +20,7 @@ switch (env) {
     config = test;
     break;
   default:
-    throw new Error('Failed to load enviroment configuration');
+    throw new Error('Failed to load environment configuration');
 }
 
 const defaults = {
