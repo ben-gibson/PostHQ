@@ -24,11 +24,5 @@ module.exports.authenticate = async (credentials) => {
     throw new AuthError('Could not authenticate user!');
   }
 
-  return jwt.sign(
-    {
-      data: user,
-    },
-    config.jwt.secret,
-    { expiresIn: '1h' },
-  );
+  return jwt.sign({ data: user }, config.jwt.secret, { expiresIn: '1h' });
 };
